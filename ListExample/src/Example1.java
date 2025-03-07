@@ -20,7 +20,7 @@ public class Example1 {
 		st3.setName("XDC");
 		st3.setAge(15);
 
-		List<Student> list = new ArrayList<>();
+		List<Student> list = new ArrayList<>(); // CopyOnWriteARryList<>(), CopyOnWriteAraySet<>()
 		list.add(st1);
 		list.add(st2);
 		list.add(st3);
