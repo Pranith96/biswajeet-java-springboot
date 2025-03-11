@@ -37,4 +37,10 @@ public class BikeImpl implements Bike, Bike2 {
 		
 	}
 
+	@Override
+	public void hi() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

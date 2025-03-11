@@ -10,4 +10,6 @@ public interface Bike {
 	public void stand();
 
 	public void engine();
+	
+	public void hi();
 }
