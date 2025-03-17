@@ -79,3 +79,5 @@ public class Example {
 		System.out.println(grades2);
 	}
 }
+
+//Optional.of, Optional.ofNullable, 
