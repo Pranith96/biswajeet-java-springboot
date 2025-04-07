@@ -15,4 +15,8 @@ public interface EmployeeService {
 
 	Employee getEmployeeById(Integer id);
 
+	List<EmployeeResponse> fetchAllEmployeesByName(String name);
+
+	EmployeeResponseDto deleteEmployeeById(Integer id);
+
 }
