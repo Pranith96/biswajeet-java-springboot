@@ -19,4 +19,6 @@ public interface EmployeeService {
 
 	EmployeeResponseDto deleteEmployeeById(Integer id);
 
+	EmployeeResponseDto updateEmployee(EmployeeRequestDto employeeRequest, Integer id);
+
 }

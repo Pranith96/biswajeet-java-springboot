@@ -1,20 +1,18 @@
 package com.employee.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import com.employee.dto.EmployeeRequestDto;
 import com.employee.dto.EmployeeResponse;
 import com.employee.dto.EmployeeResponseDto;
 import com.employee.entity.Employee;
+import com.employee.exception.EmployeeDataException;
 import com.employee.repository.EmployeeRepository;
 
 import io.micrometer.common.util.StringUtils;
@@ -84,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// employeeRepository.findByNameAndStatus(name,status);
 		Optional<Employee> response = employeeRepository.findById(id);
 		if (!response.isPresent()) {
-			throw new RuntimeException("Data not found");
+			throw new EmployeeDataException("Data not found");
 		}
 //		EmployeeResponse empResponse = new EmployeeResponse();
 //		empResponse.setId(response.get().getId());
@@ -140,11 +138,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeResponseDto deleteEmployeeById(Integer id) {
 		Employee response = getEmployeeById(id);
-		//employeeRepository.delete(response);
+		// employeeRepository.delete(response);
 		employeeRepository.deleteById(id);
 		EmployeeResponseDto responseDto = new EmployeeResponseDto();
 		responseDto.setEmployeeId(String.valueOf(id));
 		responseDto.setMessage("Deleted successfully");
+		return responseDto;
+	}
+
+	@Override
+	public EmployeeResponseDto updateEmployee(EmployeeRequestDto employeeRequest, Integer id) {
+		Employee response = getEmployeeById(id);
+		if (employeeRequest.getAge() != null) {
+			response.setAge(employeeRequest.getAge());
+		}
+		if (employeeRequest.getGender() != null) {
+			response.setGender(employeeRequest.getGender());
+		}
+		if (StringUtils.isNotBlank(employeeRequest.getMobileNumber())) {
+			response.setMobileNumber(employeeRequest.getMobileNumber());
+		}
+		if (StringUtils.isNotBlank(employeeRequest.getName())) {
+			response.setName(employeeRequest.getName());
+		}
+		Employee employee = employeeRepository.save(response);
+		EmployeeResponseDto responseDto = new EmployeeResponseDto();
+		if (employee == null) {
+			responseDto.setEmployeeId(String.valueOf(id));
+			responseDto.setMessage("Failed to update employee records");
+			return responseDto;
+		}
+		responseDto.setEmployeeId(String.valueOf(employee.getId()));
+		responseDto.setMessage("Employee details updated");
 		return responseDto;
 	}
 

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
@@ -17,6 +19,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "employee_table")
+@DynamicInsert
+@DynamicUpdate
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
