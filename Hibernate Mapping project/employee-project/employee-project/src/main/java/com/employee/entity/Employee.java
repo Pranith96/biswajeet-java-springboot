@@ -49,7 +49,7 @@ public class Employee implements Serializable {
 	private LocalDateTime createdAt;
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-	
+
 	public Integer getId() {
 		return id;
 	}

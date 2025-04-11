@@ -6,6 +6,9 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.employee.dto.EmployeeRequestDto;
@@ -17,8 +20,8 @@ import com.employee.repository.EmployeeRepository;
 
 import io.micrometer.common.util.StringUtils;
 
-@Service
-public class EmployeeServiceImpl implements EmployeeService {
+@Service(value = "service2")
+public class EmployeeServiceImpl2 implements EmployeeService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -112,7 +115,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// results = employeeRepository.findAll().stream().filter(data ->
 		// data.equals(name)).collect(Collectors.toList());
 
-		results = employeeRepository.findByName(name);
+		results = employeeRepository.getByName(name);
 		if (results == null || results.isEmpty()) {
 			return new ArrayList<>();
 		}
@@ -171,6 +174,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 		responseDto.setEmployeeId(String.valueOf(employee.getId()));
 		responseDto.setMessage("Employee details updated");
 		return responseDto;
+	}
+
+	@Override
+	public List<EmployeeResponse> getEmployees(int pageNumber, int pageSize) {
+		Pageable page = PageRequest.of(pageNumber, pageSize);
+		Page<Employee> results = employeeRepository.findAll(page);
+//		List<Employee> emp =results.getContent();
+//		totalElements = results.getTotalElements();
+//		pageCount = results.getTotalPages();
+		if (results == null || results.isEmpty()) {
+			return new ArrayList<>();
+		}
+		List<EmployeeResponse> response = new ArrayList<>();
+		for (Employee emp : results) {
+			EmployeeResponse empResponse = new EmployeeResponse();
+			empResponse.setId(emp.getId());
+			empResponse.setEmpId(emp.getEmpId());
+			empResponse.setName(emp.getName());
+			empResponse.setAge(emp.getAge());
+			empResponse.setGender(emp.getGender());
+			empResponse.setMobileNumber(emp.getMobileNumber());
+			empResponse.setStatus(emp.getStatus());
+			response.add(empResponse);
+		}
+		return response;
 	}
 
 }
