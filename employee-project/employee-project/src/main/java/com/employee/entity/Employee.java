@@ -8,19 +8,23 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
+//@EqualsAndHashCode
+//@Getter
+//@Setter
 @Entity
 @Table(name = "employee_table")
 @DynamicInsert
@@ -50,100 +54,100 @@ public class Employee implements Serializable {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	public Integer getId() {
-		return id;
-	}
+//	public Integer getId() {
+//		return id;
+//	}
+//
+//	public void setId(Integer id) {
+//		this.id = id;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	public String getMobileNumber() {
+//		return mobileNumber;
+//	}
+//
+//	public void setMobileNumber(String mobileNumber) {
+//		this.mobileNumber = mobileNumber;
+//	}
+//
+//	public Integer getAge() {
+//		return age;
+//	}
+//
+//	public void setAge(Integer age) {
+//		this.age = age;
+//	}
+//
+//	public String getEmpId() {
+//		return empId;
+//	}
+//
+//	public void setEmpId(String empId) {
+//		this.empId = empId;
+//	}
+//
+//	public Gender getGender() {
+//		return gender;
+//	}
+//
+//	public void setGender(Gender gender) {
+//		this.gender = gender;
+//	}
+//
+//	public String getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(String status) {
+//		this.status = status;
+//	}
+//
+//	public LocalDateTime getCreatedAt() {
+//		return createdAt;
+//	}
+//
+//	public void setCreatedAt(LocalDateTime createdAt) {
+//		this.createdAt = createdAt;
+//	}
+//
+//	public LocalDateTime getUpdatedAt() {
+//		return updatedAt;
+//	}
+//
+//	public void setUpdatedAt(LocalDateTime updatedAt) {
+//		this.updatedAt = updatedAt;
+//	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+//	public Employee(Integer id, String name, String mobileNumber, Integer age, String empId, Gender gender,
+//			String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+//		this.id = id;
+//		this.name = name;
+//		this.mobileNumber = mobileNumber;
+//		this.age = age;
+//		this.empId = empId;
+//		this.gender = gender;
+//		this.status = status;
+//		this.createdAt = createdAt;
+//		this.updatedAt = updatedAt;
+//	}
+//
+//	public Employee() {
+//	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public String getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(String empId) {
-		this.empId = empId;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public Employee(Integer id, String name, String mobileNumber, Integer age, String empId, Gender gender,
-			String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
-		this.id = id;
-		this.name = name;
-		this.mobileNumber = mobileNumber;
-		this.age = age;
-		this.empId = empId;
-		this.gender = gender;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
-	public Employee() {
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", mobileNumber=" + mobileNumber + ", age=" + age + ", empId="
-				+ empId + ", gender=" + gender + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Employee [id=" + id + ", name=" + name + ", mobileNumber=" + mobileNumber + ", age=" + age + ", empId="
+//				+ empId + ", gender=" + gender + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt="
+//				+ updatedAt + "]";
+//	}
 
 //	@Override
 //	public int hashCode() {
